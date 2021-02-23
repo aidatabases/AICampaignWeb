@@ -1,0 +1,8 @@
+@import 'scss/variables.scss';
+
+.main-content{
+    padding: $sidePaddings;
+    background-color: $backgroundColor;
+    width: 100%;
+    min-height: calc(100vh - #{$headerHeight});
+}

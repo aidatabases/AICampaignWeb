@@ -1,0 +1,13 @@
+@mixin flex-center($orientation) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $orientation;
+}
+
+@mixin mQ($size) {
+    @media screen and (max-width: $size) {
+        @content;
+    }
+}
+

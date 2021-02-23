@@ -1,0 +1,118 @@
+$contentHeight: 46px;
+$blue: #26bec0;
+@import '../scss/variables.scss';
+
+.header-main{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $sidePaddings;
+    height: $headerHeight;
+    border-bottom: $borderStyle2;
+    overflow: hidden;
+    position: sticky;
+
+    .header-left,
+    .header-right{
+        display: flex;
+    }
+    .header-left{
+        display: flex;
+        align-items: center;
+
+        .header-burger{
+            height: 20px;
+            width: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            div{
+                width: 100%;
+                height: 4px;
+                background-color: $lightBlue;
+                border-radius: 1px;
+            }
+        }
+        img{
+            height: $contentHeight;
+            margin-right: 3.5em;
+            height: $headerHeight;
+            cursor: pointer;
+        }
+    }
+}
+
+.header-right{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    div{
+        margin-right: 1em;
+    }
+    .header-search{
+        position: relative;
+        input {
+            width: 100%;
+            height: $contentHeight;
+            padding-left: $contentHeight;
+            border-radius: $contentHeight;
+            outline: none;
+            border: $borderStyle1;
+        }
+        img{
+            position: absolute;
+            z-index: 2;
+            left: 10px;
+            top: 25%;
+            height: 60%;
+        }
+    }
+
+    .header-noti{
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        height: $contentHeight;
+        width: $contentHeight;
+        border: $borderStyle1;
+        cursor: pointer;
+        img{
+            height: 70%;
+        }
+
+        div{
+            position: absolute;
+            background-color: $mainColor;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            top: 22%;
+            left: 60%;
+            z-index: 2;
+            outline: 1px solid white;
+        }
+    }
+
+    .header-verti-line{
+        width: 2px;
+        height: $contentHeight;
+        background-color: #a9a9a9;
+    }
+
+    .header-profile{
+        width: $contentHeight;
+        height: $contentHeight;
+        border-radius: 50%;
+        overflow: hidden;
+        cursor: pointer;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

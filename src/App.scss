@@ -1,0 +1,15 @@
+@import 'scss/variables.scss';
+.App {
+  text-align: center;
+}
+.main{
+  display: flex;
+}
+img{
+  display: block;
+  object-fit: cover;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
