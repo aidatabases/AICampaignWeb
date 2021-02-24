@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Drawer.scss";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleUp, faHome } from '@fortawesome/free-solid-svg-icons'
 
@@ -14,22 +14,22 @@ const Drawer = () => {
   return (
     <div className="drawer-holder">
       <div className="drawer">
-        <Link to="/">
+        <NavLink activeClassName='drawer-nav-active' exact to="/">
           <div className="drawer-nav">
             <div className='drawer-nav-content'>
                 <FontAwesomeIcon icon={faHome} className='drawer-home'/>
                 <div className="drawer-nav-text">Home</div>
             </div>
           </div>
-        </Link>
-        <Link to="/profile">
+        </NavLink>
+        <NavLink activeClassName='drawer-nav-active' to="/profile">
           <div className="drawer-nav">
             <div className='drawer-nav-content'>
                 <FontAwesomeIcon icon={faHome} className='drawer-home'/>
                 <div className="drawer-nav-text">My Profile</div>
             </div>
           </div>
-        </Link>
+        </NavLink>
         <div>
           <div className="drawer-nav" onClick={() => setSocial(!social)}>
           <div className='drawer-nav-content'>
@@ -40,15 +40,15 @@ const Drawer = () => {
           </div>
           {social && (
             <div>
-              <Link to="/social/update">
+              <NavLink activeClassName='drawer-nav-active' to="/social/update">
                 <div className="drawer-nav sub-nav drawer-nav-text">Post an Update</div>
-              </Link>
-              <Link to="/social/liveStream">
+              </NavLink>
+              <NavLink activeClassName='drawer-nav-active' to="/social/liveStream">
                 <div className="drawer-nav sub-nav drawer-nav-text">Live Streaming</div>
-              </Link>
-              <Link to="/social/postReach">
+              </NavLink>
+              <NavLink activeClassName='drawer-nav-active' to="/social/postReach">
                 <div className="drawer-nav sub-nav drawer-nav-text">Post Reach</div>
-              </Link>
+              </NavLink>
             </div>
           )}
         </div>
@@ -62,9 +62,9 @@ const Drawer = () => {
           </div>
           {connect && (
             <div>
-              <Link to="/connect/news">
+              <NavLink activeClassName='drawer-nav-active' to="/connect/news">
                 <div className="drawer-nav sub-nav drawer-nav-text">News</div>
-              </Link>
+              </NavLink>
               <div
                 className="drawer-nav sub-nav"
                 onClick={() => setEvents(!events)}
@@ -74,14 +74,14 @@ const Drawer = () => {
               </div>
               {events && (
                 <div>
-                  <Link to="/connect/events/create">
+                  <NavLink activeClassName='drawer-nav-active' to="/connect/events/create">
                     <div className="drawer-nav sub-sub-nav drawer-nav-text">
                       Create an Event
                     </div>
-                  </Link>
-                  <Link to="/connect/events/view">
+                  </NavLink>
+                  <NavLink activeClassName='drawer-nav-active' to="/connect/events/view">
                     <div className="drawer-nav sub-sub-nav drawer-nav-text">View Events</div>
-                  </Link>
+                  </NavLink>
                 </div>
               )}
               <div
@@ -93,16 +93,16 @@ const Drawer = () => {
               </div>
               {issues && (
                 <div>
-                  <Link to="/connect/issues/create">
+                  <NavLink activeClassName='drawer-nav-active' to="/connect/issues/create">
                     <div className="drawer-nav sub-sub-nav drawer-nav-text">
                       Create an Issue
                     </div>
-                  </Link>
-                  <Link to="/connect/issues/view">
+                  </NavLink>
+                  <NavLink activeClassName='drawer-nav-active' to="/connect/issues/view">
                     <div className="drawer-nav sub-sub-nav drawer-nav-text">
                       View Posted Issues
                     </div>
-                  </Link>
+                  </NavLink>
                 </div>
               )}
               <div
@@ -114,53 +114,53 @@ const Drawer = () => {
               </div>
               {survey && (
                 <div>
-                  <Link to="/connect/survey/create">
+                  <NavLink activeClassName='drawer-nav-active' to="/connect/survey/create">
                     <div className="drawer-nav sub-sub-nav drawer-nav-text">
                       Create a Survey
                     </div>
-                  </Link>
-                  <Link to="/connect/survey/collect">
+                  </NavLink>
+                  <NavLink activeClassName='drawer-nav-active' to="/connect/survey/collect">
                     <div className="drawer-nav sub-sub-nav drawer-nav-text">
                       Collect Survey Responses
                     </div>
-                  </Link>
-                  <Link to="/connect/survey/result">
+                  </NavLink>
+                  <NavLink activeClassName='drawer-nav-active' to="/connect/survey/result">
                     <div className="drawer-nav sub-sub-nav drawer-nav-text">
                       Result Dashboard
                     </div>
-                  </Link>
+                  </NavLink>
                 </div>
               )}
-              <Link to="/connect/voters">
+              <NavLink activeClassName='drawer-nav-active' to="/connect/voters">
                 <div className="drawer-nav sub-nav drawer-nav-text">Voter Databases</div>
-              </Link>
+              </NavLink>
             </div>
           )}
         </div>
-        <Link to="/achievements">
+        <NavLink activeClassName='drawer-nav-active' to="/achievements">
           <div className="drawer-nav">
           <div className='drawer-nav-content'>
             <FontAwesomeIcon icon={faHome} className='drawer-home'/>
             <div className='drawer-nav-text'>Achievements Card</div>
             </div>
           </div>
-        </Link>
-        <Link to="/talkpoints">
+        </NavLink>
+        <NavLink activeClassName='drawer-nav-active' to="/talkpoints">
           <div className="drawer-nav">
           <div className='drawer-nav-content'>
             <FontAwesomeIcon icon={faHome} className='drawer-home'/>
             <div className='drawer-nav-text'>Talking Points</div>
             </div>
           </div>
-        </Link>
-        <Link to="/donations">
+        </NavLink>
+        <NavLink activeClassName='drawer-nav-active' to="/donations">
           <div className="drawer-nav">
           <div className='drawer-nav-content'>
             <FontAwesomeIcon icon={faHome} className='drawer-home'/>
             <div className='drawer-nav-text'>Ask for Donations</div>
             </div>
           </div>
-        </Link>
+        </NavLink>
       </div>
     </div>
   );

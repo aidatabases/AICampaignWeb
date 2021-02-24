@@ -39,7 +39,7 @@ $borderRadius: 5px;
             margin-right: 0;
             margin-left: 0.2rem;
             font-size: 18px;
-            transition: transform 0.2s ease-in;
+            transition: transform 100ms ease-in-out;
         }
         .drawer-nav-content{
             display: flex;
@@ -50,8 +50,7 @@ $borderRadius: 5px;
         display: flex;
         border-radius: $borderRadius;
         &:hover,
-        &:focus,
-        &:active{
+        &:focus{
             background-color: $fillColor;
             div{
                 color: $mainColor;
@@ -71,4 +70,11 @@ $borderRadius: 5px;
 
 .drawer-nav-text{
     color: $darkGray;
+}
+
+.drawer-nav-active{
+    background-color: $fillColor;
+    div{
+        color: $mainColor;
+    }
 }
