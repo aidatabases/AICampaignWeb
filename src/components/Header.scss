@@ -1,6 +1,22 @@
+// @use "sass:math";
+@import '../scss/variables.scss';
 $contentHeight: 46px;
 $blue: #26bec0;
-@import '../scss/variables.scss';
+$burgerHeight: 20px;
+$burgerWidth: 35px;
+
+
+
+@function burgerOuter($burgerH: $burgerHeight, $burgerW: $burgerWidth){
+    $burgerDim: 1px;
+    @if $burgerH > $burgerW {
+        $burgerDim: 1.5 * $burgerH;
+    }
+    @else {
+        $burgerDim: 1.5 * $burgerW;
+    }
+    @return $burgerDim;
+}
 
 .header-main{
     width: 100%;
@@ -20,10 +36,20 @@ $blue: #26bec0;
     .header-left{
         display: flex;
         align-items: center;
-
+        .header-burger-container{
+            height: burgerOuter();
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: burgerOuter();
+            border-radius: 50%;
+            &:active{
+                background-color: $strokeColor;
+            }
+        }
         .header-burger{
-            height: 20px;
-            width: 35px;
+            height: $burgerHeight;
+            width: $burgerWidth;
             display: flex;
             flex-direction: column;
             justify-content: space-between;

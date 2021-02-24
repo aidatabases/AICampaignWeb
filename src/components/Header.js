@@ -17,21 +17,21 @@ const Header = ({setDrawerOpen}) => {
         <div className="header-main">
             <div className="header-left">
                 <Link to='/'><img src={AILogo}/></Link>
+                <div className='header-burger-container'>
                 <div className="header-burger" onClick={clickHandler}>
                     <div/>
                     <div/>
                     <div/>
                 </div>
+                </div>
             </div>
             <div className="header-right">
                 <div className="header-search">
                     <input type = "text" placeholder="search everything"/>
-                    {/* <img src={searchIcon}/> */}
                     <FontAwesomeIcon icon={faSearch} className='header-search-icon'/>
                 </div>
                 <div className="header-noti">
                     <FontAwesomeIcon icon = {faBell} className='noti-icon'/>
-                    {/* <img src={bellIcon}/> */}
                     <div></div>
                 </div>
                 <div className="header-verti-line"/>
