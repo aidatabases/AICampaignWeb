@@ -1,31 +1,38 @@
 import React from 'react'
 import './Main.scss'
 import { Route, Switch } from 'react-router-dom'
+import Home from './pages/Home'
+import Profile from './pages/Profile'
+import Donations from './pages/Donations'
+import Social from './pages/Social'
+import Achievements from './pages/Achievements'
+import Talking from './pages/Talking'
+import Connect from './pages/Connect'
 
 const Main = () => {
     return (
         <div className="main-content">
             <Switch>
                 <Route exact path='/'>
-                    Hello Home
+                    <Home/>
                 </Route>
                 <Route path='/profile'>
-                    Profile section
+                    <Profile/>
                 </Route>
                 <Route path='/social'>
-                    Social Media
+                    <Social/>
                 </Route>
                 <Route path='/connect'>
-                    Local Connect
+                    <Connect/>
                 </Route>
                 <Route path='/achievements'>
-                    Achievements
+                    <Achievements/>
                 </Route>
                 <Route path='/talkpoints'>
-                    Talking Points
+                    <Talking/>
                 </Route>
                 <Route path='/donations'>
-                    Donations
+                    <Donations/>
                 </Route>
             </Switch>
         </div>
