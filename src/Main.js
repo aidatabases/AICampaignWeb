@@ -15,7 +15,7 @@ const Main = () => {
                 <Route path='/social'>
                     Social Media
                 </Route>
-                <Route path='/localConnect'>
+                <Route path='/connect'>
                     Local Connect
                 </Route>
                 <Route path='/achievements'>

@@ -1,9 +1,9 @@
 @import '../scss/variables.scss';
-$navPadding: 1.5rem;
-$imageWidth: 20px;
-$imageRightMargin: 1rem;
+$navPadding: 1.2rem;
+$imageSize: 20px;
+$imageRightMargin: 0.8rem;
 $scrollbarWidth: 10px;
-
+$borderRadius: 5px;
 .drawer-holder{
     height: calc(100vh - #{$headerHeight});
     padding: 0.1rem;
@@ -24,20 +24,34 @@ $scrollbarWidth: 10px;
         align-items: center;
         height: 40px;
         padding: $navPadding;
-        border-radius: 5px;
+        border-radius: $borderRadius;
         text-align: start;
         width: $drawerWidth;
         font-size: 0.9rem;
+        position: relative;
         cursor: pointer;
-        img{
-            height: 20px;
-            width: $imageWidth;
+        justify-content: space-between;
+        .drawer-home{
+            font-size: $imageSize;
             margin-right: $imageRightMargin;
         }
-        div{
-            color: $darkGray;
+        .drawer-arrow{
+            margin-right: 0;
+            margin-left: 0.2rem;
+            font-size: 18px;
+            transition: transform 0.2s ease-in;
         }
-        &:hover{
+        .drawer-nav-content{
+            display: flex;
+            align-items: center;
+        }
+    }
+    a{
+        display: flex;
+        border-radius: $borderRadius;
+        &:hover,
+        &:focus,
+        &:active{
             background-color: $fillColor;
             div{
                 color: $mainColor;
@@ -47,8 +61,14 @@ $scrollbarWidth: 10px;
 
     .sub-nav{
         padding: $navPadding;
+        padding-left: calc(#{$navPadding} + #{$imageSize} + #{$imageRightMargin});
     }
     .sub-sub-nav{
         padding: $navPadding;
+        padding-left: calc(#{$navPadding} + #{$imageSize} + #{$imageRightMargin} + 10px);
     }
+}
+
+.drawer-nav-text{
+    color: $darkGray;
 }
