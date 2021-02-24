@@ -5,6 +5,9 @@ import searchIcon from '../images/search.png'
 import profileImg from '../images/profilesample.png'
 import './Header.scss'
 import { Link } from 'react-router-dom'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faBell } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Header = ({setDrawerOpen}) => {
     const clickHandler = () => {
@@ -23,10 +26,12 @@ const Header = ({setDrawerOpen}) => {
             <div className="header-right">
                 <div className="header-search">
                     <input type = "text" placeholder="search everything"/>
-                    <img src={searchIcon}/>
+                    {/* <img src={searchIcon}/> */}
+                    <FontAwesomeIcon icon={faSearch} className='header-search-icon'/>
                 </div>
                 <div className="header-noti">
-                    <img src={bellIcon}/>
+                    <FontAwesomeIcon icon = {faBell} className='noti-icon'/>
+                    {/* <img src={bellIcon}/> */}
                     <div></div>
                 </div>
                 <div className="header-verti-line"/>

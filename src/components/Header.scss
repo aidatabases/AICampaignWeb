@@ -61,10 +61,12 @@ $blue: #26bec0;
             outline: none;
             border: $borderStyle1;
         }
-        img{
+        .header-search-icon{
+            font-size: 20px;
+            color: $darkGray;
             position: absolute;
             z-index: 2;
-            left: 10px;
+            left: 15px;
             top: 25%;
             height: 60%;
         }
@@ -81,8 +83,9 @@ $blue: #26bec0;
         width: $contentHeight;
         border: $borderStyle1;
         cursor: pointer;
-        img{
-            height: 70%;
+        .noti-icon{
+            font-size: 25px;
+            color: $darkGray;
         }
 
         div{
