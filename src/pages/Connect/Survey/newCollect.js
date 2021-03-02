@@ -4,24 +4,24 @@ import axios from 'axios'
 const Collect = () => {
     let initialFormFeed = {};
 
-    const [questions, setQuestions] = useState([{questionText: "Question", options : [{optionText: "Option 1"}], open: false, type: 'text'}, {questionText: "Question 2", options : [{optionText: "Option 1"}, {optionText: "Option 2"}], open: false, type: 'radio'}])
-    // const [fetched, setFetched] = useState(false)
+    const [questions, setQuestions] = useState()
+    const [fetched, setFetched] = useState(false)
 
     const [loaded, setLoaded] = useState(false)
 
-    // useEffect(() => {
-    //     const source = axios.CancelToken.source();
+    useEffect(() => {
+        const source = axios.CancelToken.source();
 
-    //     axios.get('http://localhost:5000/collect')
-    //     .then(res => {setQuestions(res.data[0].for_data); setFetched(true) })
+        axios.get('http://localhost:5000/collect')
+        .then(res => {setQuestions(res.data[0].for_data); setFetched(true) })
         
-    //     return () => {
-    //         source.cancel()
-    //     }
-    // }, [])
+        return () => {
+            source.cancel()
+        }
+    }, [])
     
     useEffect(() => {
-        // if(fetched){
+        if(fetched){
         questions.forEach((q, i) => {
             if(q.type === 'checkbox'){
                 let helperFeed = {}
@@ -36,8 +36,8 @@ const Collect = () => {
             setFormFeed(initialFormFeed)
             setLoaded(true)
         });
-        // }
-    }, [])
+        }
+    }, [fetched])
 
     const [formFeed, setFormFeed] = useState(initialFormFeed)
 

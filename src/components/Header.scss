@@ -28,7 +28,10 @@ $burgerWidth: 35px;
     border-bottom: $borderStyle2;
     overflow: hidden;
     position: sticky;
-
+    position: -webkit-sticky;
+    z-index: 2;
+    top: 0;
+    background-color: white;
     .header-left,
     .header-right{
         display: flex;

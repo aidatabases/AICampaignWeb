@@ -30,14 +30,14 @@ const Create = () => {
             </Button>
         </div>
     )
-    // else if(clicked && !create){
-    //     return (
-    //         <div>
-    //         <input type='text' onChange={(e) => setTitle(e.target.value)}/>
-    //         <button onClick={createHandler}>Create</button>
-    //         </div>
-    //     )
-    // }
+    else if(clicked && !create){
+        return (
+            <div>
+            <input type='text' onChange={(e) => setTitle(e.target.value)}/>
+            <button onClick={createHandler}>Create</button>
+            </div>
+        )
+    }
     else{
         return(
             <div>

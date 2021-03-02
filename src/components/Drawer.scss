@@ -10,6 +10,9 @@ $borderRadius: 5px;
     overflow-y: auto;
     flex-shrink: 0;
     border-right: $borderStyle2;
+    position: sticky;
+    position: -webkit-sticky;
+    top: $headerHeight; /* required */
 }
 .drawer{
     flex-grow: 1;
