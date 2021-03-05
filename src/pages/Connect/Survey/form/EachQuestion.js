@@ -14,69 +14,97 @@ import {
 } from "@material-ui/core";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-import FileCopyOutlinedIcon from "@material-ui/icons/FileCopyOutlined";
 import "./EachQuestion.scss";
-const EachQuestion = ({ question, i, questions, setQuestions }) => {
+
+const EachQuestion = ({ question, i, allQ, setAllQ, newQ, setNewQ, onDeleteQuestion, commonLogic }) => {
+
   const changeOptions = (e) => {
-    let q = [...questions];
+    let q = [...allQ];
+    let r = {...newQ};
     q[i].type = e.target.value;
-    if (e.target.value === "text") q[i].options = [q[i].options[0]];
-    setQuestions(q);
+    r.type = e.target.value;
+    if (e.target.value === "text") {
+      q[i].options = [q[i].options[0]];
+      r.options = [r.options[0]];
+    }
+    setAllQ(q);
+    setNewQ(r);
   };
+
   const addOptions = (i) => {
-    let q = [...questions];
-    q[i].options.push({ optionText: `Option ${q[i].options.length + 1}` });
-    // setQuestions([...questions, questions[i].options.push({optionText: `Option ${i+1}`})])
-    setQuestions(q);
+    let q = [...allQ];
+    // let r = {...newQ};
+    q[i].options.push({ optionText: `Option` });
+    // r.options.push({ optionText: `Option` })
+    // r.options.splice(r.options.length - 1, 0, { optionText: 'Option' })
+
+    // q[i].options.splice(q[i].options.length-1, 0, { optionText: 'Option' });
+    setAllQ(q);
+    setNewQ(q[i]);
   };
-  //   const deleteOptions = (i) => {
-  //     let q = [...questions];
-  //     q[i].options.splice(q[i].options.length - 1, 1);
-  //     setQuestions(q);
-  //   };
 
   const deleteOptions = (i, j) => {
-    let q = [...questions];
+    let q = [...allQ];
+    // let r = {...newQ};
     q[i].options.splice(j, 1);
-    setQuestions(q);
+    // r.options.splice(j,1);
+    // console.log(r)
+    setAllQ(q);
+    setNewQ(q[i]);
   };
 
-  const deleteQuestion = () => {
-    let q = [...questions];
-    q.splice(i, 1);
-    setQuestions(q);
-  };
+  // const deleteQuestion = () => {
+  //   let q = [...allQ];
+  //   q.splice(i, 1);
+  //   setAllQ(q);
+  // };
 
   const handleQuestionValue = (text, i) => {
-    let q = [...questions];
+    let q = [...allQ];
+    let r = {...newQ}
     q[i].questionText = text;
-    setQuestions(q);
+    r.quetionText = text;
+    setAllQ(q);
+    setNewQ(r);
   };
 
   const handleOptionValue = (text, i, j) => {
-    let q = [...questions];
+    let q = [...allQ];
+    let r = {...newQ};
     q[i].options[j].optionText = text;
-    //newMembersEmail[i]= email;
-    setQuestions(q);
+    r.options[j].optionText = text;
+    setAllQ(q);
+    setNewQ(r);
   };
 
-  function handleExpand(i) {
-    let qs = [...questions];
+  // function handleExpand(i) {
+  //   let qs = [...allQ];
+  //   for (let j = 0; j < qs.length; j++) {
+  //     if (i === j) {
+  //       qs[i].open = true;
+  //     } else {
+  //       qs[j].open = false;
+  //     }
+  //   }
+  //   setAllQ(qs);
+  // }
+
+  const onHandleEdit = async(i) => {
+    commonLogic()
+    let qs = [...allQ];
     for (let j = 0; j < qs.length; j++) {
-      if (i === j) {
-        qs[i].open = true;
-      } else {
-        qs[j].open = false;
-      }
+      qs[j].open = false;
     }
-    setQuestions(qs);
+    qs[i].open = true;
+    setNewQ(qs[i]);
+    setAllQ(qs);
   }
 
   return (
     <div className="question-card">
       <Accordion
         onChange={() => {
-          handleExpand(i);
+          onHandleEdit(i);
         }}
         expanded={question.open}
       >
@@ -197,47 +225,18 @@ const EachQuestion = ({ question, i, questions, setQuestions }) => {
           <Divider />
 
           <AccordionActions>
-            {/* <IconButton
-              aria-label="View"
-              onClick={() => {
-                showAsQuestion(i);
-              }}
-            >
-              <VisibilityIcon />
-            </IconButton> */}
-
-            {/* <IconButton
-              aria-label="Copy"
-              onClick={() => {
-                copyQuestion(i);
-              }}
-            >
-              <FilterNoneIcon />
-            </IconButton> */}
-            {/* <Divider orientation="vertical" flexItem /> */}
 
             <IconButton
               aria-label="delete"
               onClick={() => {
-                deleteQuestion();
+                onDeleteQuestion(question.id, i);
               }}
             >
               <DeleteOutlineIcon />
             </IconButton>
-            {/* 
-          <IconButton aria-label="Image">
-            <MoreVertIcon />
-          </IconButton> */}
           </AccordionActions>
           </Accordion>
-          {/* <div>
-          <Button variant="contained" color="primary" onClick={deleteQuestion}>
-            <DeleteOutlineIcon />
-          </Button>
-        </div> */}
-        {/* </div> */}
       </div>
-    // </div>
   );
 };
 

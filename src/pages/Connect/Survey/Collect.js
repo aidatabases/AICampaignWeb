@@ -1,88 +1,57 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import {Button, Container, Box, Card} from '@material-ui/core'
+import FormCreator from './form/FormCreator'
+import SurveyCard from './SurveyCard'
 
-const Collect = () => {
-    let initialFormFeed = {};
-
-    const [questions, setQuestions] = useState([{questionText: "Question", options : [{optionText: "Option 1"}], open: false, type: 'text'}, {questionText: "Question 2", options : [{optionText: "Option 1"}, {optionText: "Option 2"}], open: false, type: 'radio'}])
-    // const [fetched, setFetched] = useState(false)
-
-    const [loaded, setLoaded] = useState(false)
-
-    // useEffect(() => {
-    //     const source = axios.CancelToken.source();
-
-    //     axios.get('http://localhost:5000/collect')
-    //     .then(res => {setQuestions(res.data[0].for_data); setFetched(true) })
-        
-    //     return () => {
-    //         source.cancel()
-    //     }
-    // }, [])
+const Create = () => {
+    const [clicked, setClicked] = useState(false)
+    const [create, setCreate] = useState(false)
+    const [title, setTitle] = useState()
+    const [questions, setQuestions] = useState([{questionText: "Question", options : [{optionText: "Option 1"}], open: false, type: 'text'}])
+    const [availableForms, setAvailableForms] = useState([])
+    const [modified, setModified] = useState(true)
     
+
+    const addQuestion = () => {
+        setQuestions([...questions, {questionText: "Question", options : [{optionText: "Option 1"}], open: false, type: 'text'}])
+    }
+
+    // const createHandler = async() => {
+    //     let res = await axios.post('http://localhost:5000/create', {title: title})
+    //     setCreate(true)        
+    // }
+
     useEffect(() => {
-        // if(fetched){
-        questions.forEach((q, i) => {
-            if(q.type === 'checkbox'){
-                let helperFeed = {}
-                q.options.forEach((op, j) => {
-                    helperFeed[j] = false
-                })
-                initialFormFeed[i] = helperFeed
-            }
-            else {
-                initialFormFeed[i] = null
-            }
-            setFormFeed(initialFormFeed)
-            setLoaded(true)
-        });
-        // }
-    }, [])
+        const source = axios.CancelToken.source();
 
-    const [formFeed, setFormFeed] = useState(initialFormFeed)
+        axios.get('http://localhost:5000/collect/forms')
+        .then(forms => setAvailableForms(forms.data.rows))
+        .catch(err => console.log(err))
+        return () => {
+            source.cancel()
+        }
+    }, [modified])
 
-    const changeHandler = (e, i, j) => {
-        let q = {...formFeed}
-        if(j === null){
-            q[i] = e.target.value
-            setFormFeed(q)
-        }
-        else {
-            q[i][j] = !q[i][j];
-            setFormFeed(q)
-        }
-    }
-    if(!loaded){
-        return(
-            <div>Loading</div>
-        )
-    }
-    else{
+    if(availableForms === null)
     return (
         <div>
-            {questions.map((question, i) => 
-                <div>
-                    <p style={{display: 'flex'}}>{question.questionText}</p>
-                    {question.type === 'text' ?
-                    <input type='text' value={formFeed[i]} onChange={(e) => changeHandler(e, i, null)}/> 
-                    : 
-                    // <div>Option</div>
-                    
-                    question.options.map((option, j) => 
-                    question.type === 'radio' ?
-                    <div style={{display: 'flex'}}><input type={question.type} value={option.optionText} checked={formFeed[i] === option.optionText} onClick={(e) => changeHandler(e, i, null)}/><label>{option.optionText}</label></div> 
-                    : 
-                    <div style={{display: 'flex'}}><input type={question.type} value={option.optionText} checked={formFeed[i][j]} onClick={(e) => changeHandler(e, i, j)}/><label>{option.optionText}</label></div>)
-                    }
-                </div>
-            
-            )}
-            <div style={{display: 'flex', marginTop: '30px'}}>
-                {JSON.stringify(formFeed)}
-            </div>
+            {/* <Button variant='contained' color='primary' onClick={clickHandler}>
+                Create a form
+            </Button> */}
+            <SurveyCard setModified={setModified}/>
         </div>
     )
-                }
+    else{
+        return(
+            <div>
+                {availableForms.map((f, i) => (
+                    <SurveyCard formId={f.form_id} formTitle={f.form_title} key={i} setModified={setModified}/>
+                ))}
+                {/* <RenderQuestion questions={questions} addQuestion={addQuestion} setQuestions={setQuestions}/> */}
+            </div>
+        )
+    }
 }
 
-export default Collect
+export default Create

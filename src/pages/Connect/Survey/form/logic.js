@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 
+export default function Logic(){
 const [allQ, setAllQ] = useState([
   {
     questionText: "Question",
@@ -85,9 +86,19 @@ const onAddQuestion = async () => {
 };
 
 const {form_id} = useParams()
+
+const createFormHandler = async () => {
+    let newForm = await axios.post("http://localhost:5000/create/forms", {
+      title: title,
+    });
+    //If successful then store the created form id and push it in the nav bar
+    const data = newForm.data.rows[0];
+    history.push(`${curUrl.url}/${data.form_id}`);
+  };
+
 const onSaveForm = async () => {
   commonLogic();
-  let notDraft = await axios.put(`http://localhost:5000/create/${form_id}`, {title: title});
+  let notDraft = await axios.put(`http://localhost:5000/create/form/${form_id}`, {title: title});
 };
 
 const deleteQuestionLocally = (i) => {
@@ -97,7 +108,7 @@ const deleteQuestionLocally = (i) => {
   setNewQ(null);
 };
 
-const onDeleteQuestion = (id, i) => {
+const onDeleteQuestion = async(id, i) => {
   if(id !== null){
     let delQ = await axios.delete(`http://localhost:5000/create/question/${id}`)
     //If successful then delete the same from allQ and newQ
@@ -113,10 +124,12 @@ const onDeleteQuestion = (id, i) => {
 const onCreateForm = async() => {
   let newForm = await axios.post('http://localhost:5000/create', {title: title})
   //If successful then store the created form id and push it in the nav bar
+  const data = newForm.data.rows[0];
+  history.push(`${curUrl.url}/${data.form_id}`)
 }
 
-const onDeleteForm = async() => {
-  let form = await axios.delete(`http://localhost:5000/create/${form_id}`)
+// const onDeleteForm = async() => {
+//   let form = await axios.delete(`http://localhost:5000/create/${form_id}`)
 }
 
 //each question
