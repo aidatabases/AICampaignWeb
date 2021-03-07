@@ -1,0 +1,91 @@
+@import '../../../scss/variables.scss';
+
+.survey-new-holder{
+    display: flex;
+    flex-direction: column;
+    height: 170px;
+    width: 180px;
+    justify-content: space-between;
+
+    .survey-new-text{
+        font-size: 0.9rem;
+        font-weight: $medium;
+    }
+}
+.survey-new-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 1em;
+    width: 180px;
+    height: 140px;
+    border: 1px solid $mainColor;
+    border-radius: 5px;
+    cursor: pointer;
+
+    .new-form-vertical{
+        display: flex;
+        height: 80px;
+        width: 5px;
+        position: absolute;
+        margin: 0 auto;
+        background-color: $mainColor;
+        border-radius: 2.5px;
+    }
+    .new-form-horizontal{
+        display: flex;
+        height: 5px;
+        width: 80px;
+        margin: 0 auto;
+        top: calc(50% - 2.5px);
+        right: 0;
+        left: 0;
+        background-color: $mainColor;
+        border-radius: 2.5px;
+        position: absolute;
+    }
+}
+
+.surveycard-holder{
+    grid-row: span 1;
+    grid-column: span 1;
+    width: 250px;
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    border: 1px solid $mainColor;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+
+    .surveycard-image{
+        display: block;
+        width: 100%;
+        height: 170px;
+        margin: 0;
+        padding: 0;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .surveycard-info{
+        display: flex;
+        height: 60px;
+        width: 100%;
+        padding: 0.8em;
+        flex-direction: column;
+
+        .surveycard-big-text{
+            font-size: 1rem;
+            display: flex;
+            margin-bottom: 0.2rem;
+        }
+        .surveycard-small-text{
+            font-size: 0.65rem;
+            display: flex;
+        }
+    }
+}

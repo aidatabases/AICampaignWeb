@@ -1,54 +1,154 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
-import {Button, Container, Box, Card} from '@material-ui/core'
-import FormCreator from './form/FormCreator'
-import SurveyCard from './SurveyCard'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { makeStyles, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
+import SurveyCard from "./SurveyCard";
+import "./Create.scss";
+
+const useStyles = makeStyles({
+  gridContainer: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+    alignItems: "center",
+    columnGap: "1em",
+    rowGap: "1em",
+    justifyItems: "grid-start",
+    marginBottom: '3em',
+  },
+  gridContainer2: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+    alignItems: "center",
+    columnGap: "1em",
+    rowGap: "1em",
+    justifyItems: "grid-start",
+    marginBottom: '3em',
+  },
+  formControl: {
+      backgroundColor: '#a9a9a9',
+  }
+});
 
 const Create = () => {
-    const [clicked, setClicked] = useState(false)
-    const [create, setCreate] = useState(false)
-    const [title, setTitle] = useState()
-    const [questions, setQuestions] = useState([{questionText: "Question", options : [{optionText: "Option 1"}], open: false, type: 'text'}])
-    const [availableForms, setAvailableForms] = useState([])
-    const [modified, setModified] = useState(true)
-    
+  const [availableForms, setAvailableForms] = useState([]);
+  const [modified, setModified] = useState(true);
+  const classes = useStyles();
 
-    const addQuestion = () => {
-        setQuestions([...questions, {questionText: "Question", options : [{optionText: "Option 1"}], open: false, type: 'text'}])
-    }
+  const [dropdowns, setDropdowns] = useState({
+      search: '',
+      date: '',
+      status: '',
+      location: '',
+      category: '',
+  })
+  const handleChange = (event) => {
+    const name = event.target.name;
+    setDropdowns({
+      ...dropdowns,
+      [name]: event.target.value,
+    });
+  };
 
-    // const createHandler = async() => {
-    //     let res = await axios.post('http://localhost:5000/create', {title: title})
-    //     setCreate(true)        
-    // }
+  useEffect(() => {
+    const source = axios.CancelToken.source();
+    axios
+      .get("http://localhost:5000/create/forms")
+      .then((forms) => setAvailableForms(forms.data.rows))
+      .catch((err) => console.log(err));
+    return () => {
+      source.cancel();
+    };
+  }, [modified]);
 
-    useEffect(() => {
-        const source = axios.CancelToken.source();
-
-        axios.get('http://localhost:5000/create/forms')
-        .then(forms => setAvailableForms(forms.data.rows))
-        .catch(err => console.log(err))
-        return () => {
-            source.cancel()
-        }
-    }, [modified])
-
-    if(availableForms === null)
+  if (availableForms === null)
     return (
-        <div>
-            <SurveyCard setModified={setModified}/>
+      <div>
+        <SurveyCard setModified={setModified} />
+      </div>
+    );
+  else {
+    return (
+      <div>
+        <h1 className="create-main-heading">Create Survey</h1>
+        <div className={classes.gridContainer}>
+          <input
+            type="text"
+            placeholder="Search"
+            className="create-filter-common create-filter-search"
+          />
+          <input
+            type="date"
+            className="create-filter-common create-filter-date"
+          />
+        <FormControl variant="outlined">
+            <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
+            <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
+            value={dropdowns.status}
+            onChange={handleChange}
+            label="Age"
+            name='status'
+            className='create-filter-common create-filter-dropdown'
+            >
+                {/* <MenuItem value="">
+                    <em>None</em>
+                </MenuItem> */}
+                <MenuItem value={10} className='create-dropdown-option'>status</MenuItem>
+                <MenuItem value={20} className='create-dropdown-option'>Twenty</MenuItem>
+                <MenuItem value={30} className='create-dropdown-option'>Thirty</MenuItem>
+            </Select>
+        </FormControl>
+          {/* <input type='option' placeholder='Status' className='create-filter-common create-filter-status'/> */}
+          <input
+            type="text"
+            placeholder="Location"
+            className="create-filter-common create-filter-location"
+          />
+          {/* <input
+            type="text"
+            placeholder="Category"
+            className="create-filter-common create-filter-category"
+          /> */}
+          <FormControl variant="outlined">
+            <InputLabel id="demo-simple-select-outlined-label">Category</InputLabel>
+            <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
+            value={dropdowns.category}
+            onChange={handleChange}
+            label="Age"
+            name='category'
+            className='create-filter-common create-filter-dropdown'
+            >
+                {/* <MenuItem value="">
+                    <em>None</em>
+                </MenuItem> */}
+                <MenuItem value={10} className='create-dropdown-option'>status</MenuItem>
+                <MenuItem value={20} className='create-dropdown-option'>Twenty</MenuItem>
+                <MenuItem value={30} className='create-dropdown-option'>Thirty</MenuItem>
+            </Select>
+        </FormControl>
         </div>
-    )
-    else{
-        return(
-            <div>
-                <SurveyCard formId={null} setModified={setModified}/>
-                {availableForms.map((f, i) => (
-                    <SurveyCard formId={f.form_id} formTitle={f.form_title} key={i} setModified={setModified}/>
-                ))}
-            </div>
-        )
-    }
-}
+        <SurveyCard formId={null} setModified={setModified} />
+        <div className='create-draft-holder'>
+            <p className='create-draft-head'>
+                Drafts
+            </p>
+        <div className={classes.gridContainer2}>
+          {availableForms.map((f, i) => (
+            <SurveyCard
+              formId={f.form_id}
+              formTitle={f.form_title}
+              dateUpdated={f.date_updated}
+              key={i}
+              setModified={setModified}
+            />
+          ))}
+        </div>
+        </div>
+      </div>
+    );
+  }
+};
 
-export default Create
+export default Create;

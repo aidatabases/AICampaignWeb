@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 @mixin flex-center($orientation) {
     display: flex;
     justify-content: center;
@@ -8,6 +10,19 @@
 @mixin mQ($size) {
     @media screen and (max-width: $size) {
         @content;
+    }
+}
+
+@mixin button {
+    outline: none;
+    border: none;
+    color: #fff;
+    background-color: $mainColor;
+    padding: 0.7em;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover{
+        background-color: $lightBlue;
     }
 }
 

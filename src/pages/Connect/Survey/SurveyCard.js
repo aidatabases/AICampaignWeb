@@ -12,14 +12,19 @@ import AddBoxOutlinedIcon from "@material-ui/icons/AddBoxOutlined";
 import IconButton from "@material-ui/core/IconButton";
 import { useHistory, useRouteMatch } from "react-router";
 import { Container, TextField } from "@material-ui/core";
+import './SurveyCard.scss'
+import FormImg from '../../../images/profilesample.png'
 
 const useStyles = makeStyles({
   root: {
-    width: 180,
-    height: 180,
+    gridRow: 'span 1',
+    gridColumn: 'span 1',
+    width: 250,
+    height: 230,
     display: "flex",
     flexDirection: "column",
-    height: "100%",
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
   },
   Button: {
     cursor: "pointer",
@@ -27,7 +32,7 @@ const useStyles = makeStyles({
     height: "100%",
   },
   main: {
-    height: 140,
+    height: 190,
     cursor: "pointer",
   },
   navs: {
@@ -37,17 +42,25 @@ const useStyles = makeStyles({
     position: 'fixed',
     zIndex: 2,
     height: '100vh',
-    width: '100%',
+    width: '100vw',
+    maxWidth: '100vw',
     backgroundColor: 'rgba(0,0,0,0.9)',
     top: 0,
     left: 0,
+    right: 0,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  gridElement: {
+    gridRow: 'span 1',
+    gridColumn: 'span 1',
+    width: 300,
+    height: 270,
+  }
 });
 
-export default function SurveyCard({ formId, formTitle, setModified }) {
+export default function SurveyCard({ formId, formTitle, setModified, dateUpdated }) {
   const curUrl = useRouteMatch();
   const classes = useStyles();
   const [create, setCreate] = useState(false);
@@ -71,10 +84,17 @@ export default function SurveyCard({ formId, formTitle, setModified }) {
 
   if (formId === null) {
     return (
-      <>
-        <Card className={classes.root} onClick={() => setCreate(true)}>
+      <div>
+        {/* <Card className={classes.root} onClick={() => setCreate(true)}>
           <AddBoxOutlinedIcon className={classes.Button} />
-        </Card>
+        </Card> */}
+        <div className='survey-new-holder'>
+          <div className='survey-new-form' onClick={() => setCreate(true)}>
+            <div className='new-form-vertical'/>
+            <div className='new-form-horizontal'/>
+          </div>
+          <p className='survey-new-text'>Start New Survey</p>
+        </div>
         {create ? (
         <Container className={classes.floating}>
           <Card className={classes.floatingCard}>
@@ -106,27 +126,23 @@ export default function SurveyCard({ formId, formTitle, setModified }) {
           </Card>
         </Container>
         ) : null}
-      </>
+      </div>
     );
   } else {
     return (
-      <Card className={classes.root}>
-        <CardActionArea className={classes.main}>
-          <CardContent onClick={() => history.push(`${curUrl.url}/${formId}`)}>
-            <Typography gutterBottom variant="h5" component="h2">
-              {formTitle}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions className={classes.navs}>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary" onClick={deleteFormHandler}>
-            Delete
-          </Button>
-        </CardActions>
-      </Card>
+      // <div className={classes.gridElement}>
+      <div className='surveycard-holder' onClick={() => history.push(`${curUrl.url}/${formId}`)}>
+          <img className='surveycard-image' src={FormImg}/>
+          <div className='surveycard-info'>
+            {/* <Button size="small" color="primary" onClick={deleteFormHandler}>
+              Delete
+            </Button> */}
+            <div style={{margin: 'auto 0'}}>
+              <p className='surveycard-big-text'>{formTitle}</p>
+              <p className='surveycard-small-text'>Opened on - {dateUpdated}</p>
+            </div>
+          </div>
+      </div>
     );
   }
 }

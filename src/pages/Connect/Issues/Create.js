@@ -1,29 +1,94 @@
-import React from 'react'
+import { Button } from "@material-ui/core";
+import ShareIcon from "@material-ui/icons/Share";
+import BackupSharpIcon from "@material-ui/icons/BackupSharp";
+import React, { useState, useCallback } from "react";
+import './Create.scss'
+import {useDropzone} from 'react-dropzone'
 
 const Create = () => {
-    return (
-        <div>
-            Sit fugiat reprehenderit consequat occaecat ad velit aliquip do ex in culpa aliqua deserunt commodo. Sunt sunt excepteur ullamco id reprehenderit laboris non id. Eiusmod minim eiusmod ad in deserunt excepteur aliqua consectetur duis et.
 
-Aute elit sunt tempor amet. Cillum deserunt sit quis aliquip officia eiusmod velit sunt adipisicing non duis eu. Ex culpa quis fugiat aliquip consequat tempor et consectetur.
+    const [formData, setFormData] = useState({
+        name: '',
+        location: '',
+        title: '',
+        description: '',
+    })
 
-Tempor sint occaecat tempor nisi mollit do deserunt aliquip ut. Nostrud elit id labore tempor commodo eu laboris sint laborum do magna veniam. Duis occaecat elit dolore nostrud id enim irure exercitation amet.
+    const {getRootProps, getInputProps, open, isDragActive} = useDropzone({
+        // Disable click and keydown behavior
+        noClick: true,
+        noKeyboard: true
+      });
 
-Est do qui consequat ea quis. Laborum anim laboris proident dolore labore magna dolor sunt. Minim labore reprehenderit sit proident. Eu ipsum est tempor elit fugiat voluptate adipisicing eu. Et deserunt quis deserunt fugiat fugiat pariatur proident.
+    function formInputHandler(e) {
+        const name = e.target.name
+        setFormData({
+            ...formData,
+            [name]: e.target.value,
+        })
+    }
 
-Aliqua do occaecat velit Lorem consectetur id magna in aute elit in tempor dolore ad. Lorem labore nostrud pariatur consectetur id adipisicing incididunt. Non eu pariatur velit id anim consequat proident irure ut ipsum ullamco exercitation. Eu Lorem qui deserunt nostrud qui non mollit sunt cupidatat.
-
-Amet in cupidatat culpa duis et voluptate fugiat. Magna et proident labore ipsum id laborum id eiusmod ut esse sit excepteur magna eiusmod. Enim mollit esse deserunt elit nisi reprehenderit anim.
-
-Nostrud quis dolore ullamco proident laborum eu esse aliquip commodo veniam aliqua do ut Lorem. Esse reprehenderit sit ipsum eu dolore dolore excepteur eu sint aliqua Lorem officia. Cillum culpa consectetur adipisicing laboris dolor do commodo et eu consequat. Ex irure do dolor excepteur amet ea ad mollit do est sunt aute. Et veniam labore magna fugiat.
-
-Proident Lorem ut esse quis quis est irure id consectetur amet amet dolor laborum voluptate. Ullamco adipisicing sit deserunt magna amet sunt eiusmod minim esse enim. Adipisicing non id cillum aute consequat officia enim deserunt excepteur Lorem. Ullamco est anim sit mollit veniam tempor sit voluptate eu veniam veniam incididunt. Do ut dolore magna in esse exercitation sunt adipisicing non aliqua consequat dolor nulla.
-
-Deserunt minim voluptate exercitation ullamco voluptate ea in dolore sit fugiat velit irure pariatur proident. Occaecat eiusmod laboris ex labore id veniam. Ullamco commodo eiusmod irure voluptate eiusmod ea ipsum enim Lorem sunt duis qui non velit. Duis esse consequat laborum elit proident ea.
-
-Amet sit duis aliqua ullamco et veniam cillum occaecat aute id ullamco Lorem excepteur qui. Excepteur enim in fugiat ullamco veniam adipisicing aute dolore ipsum. Elit exercitation tempor aliquip incididunt.
+    function formSubmitHandler(e) {
+        e.preventDefault()
+        console.log(formData)
+    }
+  return (
+    <div>
+      <div className="iss-cr-head-container">
+        <div className="iss-cr-head-text">
+          <h1>Create an Issue</h1>
+          <p>* indicates required</p>
         </div>
-    )
-}
+        <div className="iss-cr-head-share"><ShareIcon style={{marginRight: '7px'}}/>Share</div>
+      </div>
+      <div className="iss-cr-main-container">
+        <div className="iss-cr-form">
+          <form onSubmit={formSubmitHandler}>
+            <div className='iss-cr-form-field-container'>
+              <label>Your Name*</label>
+              <input type="text" name="name" onChange={formInputHandler} required='true'/>
+            </div>
+            <div className='iss-cr-form-field-container'>
+              <label>Location*</label>
+              <input type="text" name="location" onChange={formInputHandler} required='true'/>
+            </div>
+            <div className='iss-cr-form-field-container'>
+              <label>Issue Title</label>
+              <input type="text" name="title" onChange={formInputHandler} />
+            </div>
+            <div className='iss-cr-form-field-container'>
+              <label>Issue Description</label>
+              <textarea
+                type="text"
+                name="description"
+                onChange={formInputHandler}
+              />
+            </div>
+            <div className='iss-cr-form-btn'>
+            <button className='iss-cr-btn'>Submit</button>
+            </div>
+          </form>
+        </div>
+        <div className='iss-cr-upload-container'>
+            <h2>Upload Attachment</h2>
+            {/* <div className='iss-cr-upload-area'>
+                <BackupSharpIcon className='iss-cr-upload-btn' />
+                <p>Drag files to Upload</p>
+            </div> */}
+            <div {...getRootProps({className: 'iss-cr-upload-area dragzone'})}>
+                <input {...getInputProps()} />
+                {
+                    isDragActive ?
+                    <p>Drop the files here ...</p> :
+                    <p>Drag 'n' drop some files here, or click to select files</p>
+                }
+                <BackupSharpIcon className='iss-cr-upload-btn' onClick={open}/>
+            </div>
+            <button className='iss-cr-btn'>Upload File</button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default Create
+export default Create;

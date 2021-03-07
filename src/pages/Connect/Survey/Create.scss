@@ -1,0 +1,47 @@
+@import '../../../scss/variables.scss';
+
+.create-main-heading{
+    font-size: 1.5rem;
+    font-weight: $medium;
+    text-align: start;
+    margin-bottom: 2em;
+}
+    .create-filter-common{
+        background-color: $strokeColor;
+        font-size: 0.9rem;
+        padding: 0.7em;
+        color: $darkGray;
+        font-weight: $medium;
+        border-radius: 4px;
+        outline: none;
+        border: none;
+        margin-right: 1em;
+        width: 95%;
+    }
+
+    .create-filter-dropdown{
+        height: calc(0.9em + 1.4rem);
+        overflow: hidden;
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+
+    .create-dropdown-option{
+        height: calc(0.9em + 1.4rem);
+        width: 100%;
+    }
+
+    .create-draft-holder{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        margin-top: 2em;
+
+        .create-draft-head{
+            text-align: start;
+            margin-bottom: 1.6em;
+            font-weight: $bold;
+            font-size: 0.9rem;
+        }
+    }
