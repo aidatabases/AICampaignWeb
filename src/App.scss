@@ -1,12 +1,18 @@
 @import 'scss/variables.scss';
 .App {
   text-align: center;
+  overflow: hidden;
+  height: 100vh;
 }
 html{
   font-size: 16px;
 }
 .main{
   display: flex;
+  position: relative;
+  height: calc(100vh - #{$headerHeight});
+  margin-top: $headerHeight;
+  // overflow: hidden auto;
 }
 img{
   display: block;

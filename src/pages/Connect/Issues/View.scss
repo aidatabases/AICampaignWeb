@@ -1,0 +1,76 @@
+@import '../../../scss/variables.scss';
+
+.create-main-heading{
+    font-size: 1.5rem;
+    font-weight: $medium;
+    text-align: start;
+    margin-bottom: 2em;
+}
+.create-filter-common{
+    background-color: $strokeColor;
+    font-size: 0.9rem;
+    padding: 0.7em;
+    color: $darkGray;
+    font-weight: $medium;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    margin-right: 1em;
+    width: 95%;
+}
+
+.create-filter-dropdown{
+    height: calc(0.9em + 1.4rem);
+    overflow: hidden;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.create-dropdown-option{
+    height: calc(0.9em + 1.4rem);
+    width: 100%;
+}
+
+.iss-vi-res-head{
+    font-size: 1.15rem;
+    font-weight: $bold;
+    text-align: start;
+    margin-bottom: 1em;
+}
+
+.iss-vi-holder-main{
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-around;
+    // padding: 1em 0;
+    flex-shrink: 0;
+
+    .iss-vi-right-drawer{
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+        
+        // display: flex;
+        // width: 100px;
+        height: calc(100vh - #{$headerHeight});
+    }
+
+    .iss-vi-left-main{
+        width: 100%;
+        overflow: hidden auto;
+        margin-right: 15px;
+        padding-bottom: 1em;
+        flex-grow: 1;
+    }
+}
+
+.iss-vi-left-container{
+    // overflow: hidden auto;
+    padding: 0.1rem;
+    overflow-y: auto;
+    flex-shrink: 0;
+    // max-height: 100vh;
+    // max-height: 500px;
+}
