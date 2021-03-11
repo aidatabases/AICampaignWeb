@@ -15,138 +15,138 @@ import ViewIssueCard from "./ViewIssueCard";
 import ViewBox from './ViewBox'
 import { borderStyle1, borderStyle2, borderStyle3, headerHeight } from "../../../scss/variables";
 
-const issueData = {
-  resolved: [
-    {
-      id: 1,
-      title: "Coal",
-      description:
-        "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again hfiljgnfiu dgio jdiojiogjiogjuoiuigoiodugiod oiuf oiudiof guoid gioudfgiodo gdfioug do fdo",
-      postby: "Rookee",
-      date: "12 January, 2020",
-      img: [],
-      solution: "Okay Sir",
-    },
-    {
-      id: 2,
-      title: "Electricity",
-      description:
-        "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
-      postby: "Scott",
-      date: "12 January, 2021",
-      img: [],
-      solution: "Okay Sir",
-    },
-    {
-      id: 3,
-      title: "Swacch Bharat",
-      description:
-        "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
-      postby: "Mendeleev",
-      date: "12 January, 2022",
-      img: [],
-      solution: "Okay Sir",
-    },
-    {
-      id: 4,
-      title: "Road",
-      description:
-        "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
-      postby: "Narendra",
-      date: "12 January, 2020",
-      img: [
-        {
-          img:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFokuIjWnHD5UGB2aJf5FzsLNmAdXCCYjeIw&usqp=CAU",
-          fileName: "Eagle.jpg",
-        },
-        {
-          img:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9IsyHdgqdUTaf9oYA7k344m5Y9ndt6vqY6Q&usqp=CAU",
-          fileName: "Sparrow.jpeg",
-        },
-        {
-          img:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFokuIjWnHD5UGB2aJf5FzsLNmAdXCCYjeIw&usqp=CAU",
-          fileName: "Eagle.jpg",
-        },
-        {
-          img:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFokuIjWnHD5UGB2aJf5FzsLNmAdXCCYjeIw&usqp=CAU",
-          fileName: "Eagle.jpg",
-        },
-        {
-          img:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFokuIjWnHD5UGB2aJf5FzsLNmAdXCCYjeIw&usqp=CAU",
-          fileName: "Eagle.jpg",
-        },
-      ],
-      solution: "Okay Sir",
-    },
-    {
-      id: 5,
-      title: "Electricity",
-      description:
-        "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
-      postby: "Rahul",
-      date: "12 January, 2023",
-      img: [],
-      solution: "Okay Sir",
-    },
-  ],
-  unsettled: [
-    {
-      id: 6,
-      title: "Road area",
-      description:
-        "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
-      postby: "Kejriwal",
-      date: "12 January, 2020",
-      img: [],
-      solution: null
-    },
-    {
-      id: 7,
-      title: "Water works",
-      description:
-        "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
-      postby: "Ming",
-      date: "12 January, 2021",
-      img: [],
-      solution: null
-    },
-    {
-      id: 8,
-      title: "Municipal Works",
-      description:
-        "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
-      postby: "Justin",
-      date: "12 January, 2022",
-      img: [],
-      solution: null
-    },
-    {
-      id: 9,
-      title: "Meet",
-      description:
-        "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
-      postby: "Ram Lal",
-      date: "12 January, 2020",
-      img: [],
-      solution: null
-    },
-    {
-      id: 10,
-      title: "International Visit",
-      description:
-        "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
-      postby: "Raghu Ram",
-      date: "12 January, 2023",
-      img: [],
-      solution: null
-    },
-  ],
-};
+// const issueData = {
+//   resolved: [
+//     {
+//       issue_id: 1,
+//       issue_title: "Coal",
+//       description:
+//         "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again hfiljgnfiu dgio jdiojiogjiogjuoiuigoiodugiod oiuf oiudiof guoid gioudfgiodo gdfioug do fdo",
+//       created_by: "Rookee",
+//       created_on: "12 January, 2020",
+//       files: [],
+//       accepted_solution: "Okay Sir",
+//     },
+//     {
+//       issue_id: 2,
+//       issue_title: "Electricity",
+//       description:
+//         "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
+//       created_by: "Scott",
+//       created_on: "12 January, 2021",
+//       files: [],
+//       accepted_solution: "Okay Sir",
+//     },
+//     {
+//       issue_id: 3,
+//       issue_title: "Swacch Bharat",
+//       description:
+//         "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
+//       created_by: "Mendeleev",
+//       created_on: "12 January, 2022",
+//       files: [],
+//       accepted_solution: "Okay Sir",
+//     },
+//     {
+//       issue_id: 4,
+//       issue_title: "Road",
+//       description:
+//         "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
+//       created_by: "Narendra",
+//       created_on: "12 January, 2020",
+//       files: [
+//         {
+//           img:
+//             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFokuIjWnHD5UGB2aJf5FzsLNmAdXCCYjeIw&usqp=CAU",
+//           fileName: "Eagle.jpg",
+//         },
+//         {
+//           img:
+//             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9IsyHdgqdUTaf9oYA7k344m5Y9ndt6vqY6Q&usqp=CAU",
+//           fileName: "Sparrow.jpeg",
+//         },
+//         {
+//           img:
+//             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFokuIjWnHD5UGB2aJf5FzsLNmAdXCCYjeIw&usqp=CAU",
+//           fileName: "Eagle.jpg",
+//         },
+//         {
+//           img:
+//             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFokuIjWnHD5UGB2aJf5FzsLNmAdXCCYjeIw&usqp=CAU",
+//           fileName: "Eagle.jpg",
+//         },
+//         {
+//           img:
+//             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFokuIjWnHD5UGB2aJf5FzsLNmAdXCCYjeIw&usqp=CAU",
+//           fileName: "Eagle.jpg",
+//         },
+//       ],
+//       accepted_solution: "Okay Sir",
+//     },
+//     {
+//       issue_id: 5,
+//       issue_title: "Electricity",
+//       description:
+//         "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
+//       created_by: "Rahul",
+//       created_on: "12 January, 2023",
+//       files: [],
+//       accepted_solution: "Okay Sir",
+//     },
+//   ],
+//   unsettled: [
+//     {
+//       issue_id: 6,
+//       issue_title: "Road area",
+//       description:
+//         "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
+//       created_by: "Kejriwal",
+//       created_on: "12 January, 2020",
+//       files: [],
+//       accepted_solution: null
+//     },
+//     {
+//       issue_id: 7,
+//       issue_title: "Water works",
+//       description:
+//         "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
+//       created_by: "Ming",
+//       created_on: "12 January, 2021",
+//       files: [],
+//       accepted_solution: null
+//     },
+//     {
+//       issue_id: 8,
+//       issue_title: "Municipal Works",
+//       description:
+//         "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
+//       created_by: "Justin",
+//       created_on: "12 January, 2022",
+//       files: [],
+//       accepted_solution: null
+//     },
+//     {
+//       issue_id: 9,
+//       issue_title: "Meet",
+//       description:
+//         "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
+//       created_by: "Ram Lal",
+//       created_on: "12 January, 2020",
+//       files: [],
+//       accepted_solution: null
+//     },
+//     {
+//       issue_id: 10,
+//       issue_title: "International Visit",
+//       description:
+//         "This is a serious issue, please consider a healthy debate to resolve it. We need to work hard to make our party great again",
+//       created_by: "Raghu Ram",
+//       created_on: "12 January, 2023",
+//       files: [],
+//       accepted_solution: null
+//     },
+//   ],
+// };
 
 const useStyles = makeStyles({
   gridContainer: {
@@ -212,6 +212,34 @@ function ProposeSolution() {
 
 const View = () => {
   const classes = useStyles();
+  const [issueData, setIssueData] = useState({})
+  const [gotIssues, setGotIssues] = useState(false)
+
+  useEffect(() => {
+    const axiosCancel = axios.CancelToken.source()
+    axios.get('http://localhost:5000/issue/view')
+      .then(res => {
+        let issData = res.data
+        console.log(issData)
+        let x = {resolved: [], unsettled: []}
+        issData.forEach(item => {
+          if(item.is_resolved === true){
+            x.resolved.push(item)
+          }
+          else {
+            x.unsettled.push(item)
+          }
+        })
+        setIssueData(x)
+        setGotIssues(true)
+      })
+      // .then(() => setFetched(true))
+      .catch(err => alert(err))
+
+    return () => {
+      axiosCancel.cancel()
+    }
+  }, [])
 
   const [dropdowns, setDropdowns] = useState({
     search: "",
@@ -242,9 +270,9 @@ const View = () => {
     else {
       let currView;
       if(isResolved){
-        currView = issueData.resolved.find(element => element.id === id)
+        currView = issueData.resolved.find(element => element.issue_id === id)
       }
-      else currView = issueData.unsettled.find(element => element.id === id)
+      else currView = issueData.unsettled.find(element => element.issue_id === id)
 
       if(currView !== -1) {
         setCurrentView(currView)
@@ -255,6 +283,7 @@ const View = () => {
     }
   };
 
+  if(gotIssues)
   return (
     <div>
       <h1 className="create-main-heading">Posted Issue</h1>
@@ -329,7 +358,7 @@ const View = () => {
             <h2 className="iss-vi-res-head">Resolved</h2>
             <div style={{ marginBottom: "3em" }}>
               {issueData.resolved.map((sol, i) => (
-                <div key={i} onClick={() => activecardHandler(sol.id, true)}>
+                <div key={i} onClick={() => activecardHandler(sol.issue_id, true)}>
                   <ViewIssueCard
                     sol={sol}
                     resolve={true}
@@ -342,10 +371,10 @@ const View = () => {
             <div style={{ marginBottom: "3em" }}>
             {issueData.unsettled.map((sol, i) => (
               <>
-              <div key={i} onClick={() => activecardHandler(sol.id, false)}>
+              <div key={i} onClick={() => activecardHandler(sol.issue_id, false)}>
                 <ViewIssueCard sol={sol} resolve={false} currentId={currentId}/>
               </div>
-              {currentId === sol.id ? <ProposeSolution/> : null}
+              {currentId === sol.issue_id ? <ProposeSolution/> : null}
               </>
             ))}
             </div>
@@ -361,6 +390,10 @@ const View = () => {
       </div>
     </div>
   );
+  else 
+  return (
+    <div>Loading...</div>
+  )
 };
 
 export default View;

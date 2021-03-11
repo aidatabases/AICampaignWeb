@@ -166,13 +166,13 @@ const ViewIssueCard = ({sol, resolve, currentId}) => {
         {/* {!openIssueDetails?  */}
         <div className={classes.container} 
         // onClick={() => setOpenIssueDetails(!openIssueDetails)} 
-        style={{backgroundColor: currentId === sol.id ? fillColor : '#fff'}}>
+        style={{backgroundColor: currentId === sol.issue_id ? fillColor : '#fff'}}>
             <div className={classes.flagContainer}>
                 <div className={classes.flag1}/>
             </div>
             <div style={{display: 'flex', overflow: 'hidden'}}>
                 <div className={classes.textContainer}>
-                    <h3>{sol.title}</h3>
+                    <h3>{sol.issue_title}</h3>
                     <p className={classes.text}>{sol.description}</p>
                 </div>
             </div>
@@ -182,13 +182,13 @@ const ViewIssueCard = ({sol, resolve, currentId}) => {
         {/* :
         <div className={classes.rightbar} onClick={() => setOpenIssueDetails(!openIssueDetails)}>
             <div className={classes.rightHead}>
-                <h1>{sol.title}</h1>
+                <h1>{sol.issue_title}</h1>
                 <button disabled={true} className={classes.solutionButton}>Solution Provided</button>
             </div>
             <div className={classes.rightInfo}>
                 <h4>Posted by</h4>
-                <p>Mr {sol.postby}</p>
-                <p>on {sol.date}</p>
+                <p>Mr {sol.created_by}</p>
+                <p>on {sol.created_on}</p>
             </div>
             <div className={classes.rightDesc}>
                 <h4 style={{marginBottom: '10px'}}>Description</h4>
@@ -219,13 +219,13 @@ const ViewIssueCard = ({sol, resolve, currentId}) => {
     else {
         return(
         <>
-        <div className={classes.container} style={{backgroundColor: currentId === sol.id ? fillColor : '#fff'}}>
+        <div className={classes.container} style={{backgroundColor: currentId === sol.issue_id ? fillColor : '#fff'}}>
             <div className={classes.flagContainer}>
                 <div className={classes.flag2}/>
             </div>
             <div style={{display: 'flex', overflow: 'hidden'}}>
                 <div className={classes.textContainer}>
-                    <h3>{sol.title}</h3>
+                    <h3>{sol.issue_title}</h3>
                     <p className={classes.text}>{sol.description}</p>
                 </div>
             </div>

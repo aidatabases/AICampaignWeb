@@ -96,15 +96,15 @@ const ViewBox = ({currentView, viewboxWidth}) => {
         >
           <div className={classes.rightbar}>
             <div className={classes.rightHead}>
-              <h1>{currentView.title}</h1>
+              <h1>{currentView.issue_title}</h1>
               <button disabled={true} className={classes.solutionButton}>
                 Solution Provided
               </button>
             </div>
             <div className={classes.rightInfo}>
               <h4>Posted by</h4>
-              <p>Mr {currentView.postby}</p>
-              <p>on {currentView.date}</p>
+              <p>Mr {currentView.created_by}</p>
+              <p>on {currentView.created_on}</p>
             </div>
             <div className={classes.rightDesc}>
               <h4 style={{ marginBottom: "10px" }}>Description</h4>
@@ -112,11 +112,11 @@ const ViewBox = ({currentView, viewboxWidth}) => {
             </div>
 
             <div className={classes.dividerLine} />
-            {currentView.img.length !== 0 ? (
+            {currentView.files.length !== 0 ? (
               <>
-                <h4>{currentView.img.length} Attachments</h4>
+                <h4>{currentView.files.length} Attachments</h4>
                 <div className={classes.imgContainerHolder}>
-                  {currentView.img.map((image, i) => (
+                  {currentView.files.map((image, i) => (
                     <div className={classes.imageContainer}>
                       <img
                         key={i}
@@ -134,7 +134,7 @@ const ViewBox = ({currentView, viewboxWidth}) => {
             ) : null}
             <div className={classes.rightDesc}>
               <h3 style={{ marginBottom: "10px" }}>Posted Solution</h3>
-              <p>{currentView.solution}</p>
+              <p>{currentView.accepted_solution}</p>
             </div>
           </div>
         </div>
