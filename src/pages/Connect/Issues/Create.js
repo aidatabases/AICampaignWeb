@@ -40,6 +40,7 @@ const Create = () => {
             setAllFiles(q)
           }
         }
+        // reader.readAsDataURL(image)
         reader.onprogress = (data) => {
           if (data.lengthComputable) {   
               let prog = parseInt( ((data.loaded / data.total) * 100), 10 );
@@ -47,17 +48,19 @@ const Create = () => {
               // console.log
               let q = allFiles
               for(let i =0;i<q.length; i++){
+                console.log("World")
                 if(q[i].id === boxId) {
                   q[i].progress = prog
+                  console.log(boxId)
                 }
               }
             setAllFiles(q)
           }
         }
-        reader.onload = () => {
+        reader.onloadend = () => {
         // Do whatever you want with the file contents
           const binaryStr = reader.result
-          setProgress(100)
+          // setProgress(100)
           let q = allFiles
             for(let i =0;i<q.length; i++){
               if(q[i].id === boxId) {
@@ -66,8 +69,10 @@ const Create = () => {
             }
             console.log(binaryStr)
             setAllFiles(q)
+            // setPreview(reader.result)
         }
-        reader.readAsArrayBuffer(file)
+        // reader.readAsArrayBuffer(file)
+        reader.readAsDataURL(file)
       })
     }, [])
 
